@@ -167,12 +167,13 @@ class HBNBCommand(cmd.Cmd):
         if (len(my_data) == 3):
             print("** value missing **")
             return
-        my_instance = objs_dict[key]
-        if hasattr(my_instance, my_data[2]):
-            data_type = type(getattr(my_instance, my_data[2]))
-            setattr(my_instance, my_data[2], data_type(my_data[3]))
+        obj = objs_dict[key].__dict__
+        if my_data[2] in obj.keys():
+            data_type = type(obj[my_data[2]])
+            print(data_type)
+            obj[my_data[2]] = data_type(my_data[3])
         else:
-            setattr(my_instance, my_data[2], my_data[3])
+            obj[my_data[2]] = my_data[3]
         storage.save()
 
     def do_update2(self, arg):
