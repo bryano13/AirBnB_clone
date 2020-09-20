@@ -172,9 +172,9 @@ class HBNBCommand(cmd.Cmd):
             data_type = type(obj[my_data[2]])
             print(data_type)
             obj[my_data[2]] = data_type(my_data[3])
-        #else:
-           # obj[my_data[2]] = my_data[3]
-        #storage.save()
+        else:
+            obj[my_data[2]] = my_data[3]
+        storage.save()
 
     def do_update2(self, arg):
         """
